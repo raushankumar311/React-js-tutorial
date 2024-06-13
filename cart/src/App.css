@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.custom-btn-height {
+  padding: 4px 8px; /* Adjust padding to reduce height */
+  font-size: 14px;  /* Adjust font size if needed */
+  line-height: 1.2; /* Adjust line height for better alignment */
+  height: 40px;     /* Set a specific height if needed */
+  width: 100%;
+}
