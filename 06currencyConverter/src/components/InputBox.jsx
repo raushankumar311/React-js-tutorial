@@ -14,6 +14,15 @@ function InputBox({
 }) {
   const amountInputId = useId();
 
+  const handleAmountChange = (e) => {
+    const inputValue = e.target.value;
+    // Allow setting amount to 0 only if the input is empty or a valid number
+    if (inputValue === "" || !isNaN(Number(inputValue))) {
+      onAmountChange &&
+        onAmountChange(inputValue === "" ? 0 : Number(inputValue));
+    }
+  };
+
   return (
     <div className={`bg-white p-3 rounded-lg text-sm flex ${className}`}>
       <div className="w-1/2">
@@ -29,13 +38,11 @@ function InputBox({
           type="number"
           placeholder="Amount"
           disabled={amountDisable}
-          value={amount}
-          onChange={(e) =>
-            onAmountChange && onAmountChange(Number(e.target.value))
-          }
+          value={amount === 0 ? "" : amount}
+          onChange={handleAmountChange}
         />
       </div>
-      
+
       <div className="w-1/2 flex flex-wrap justify-end text-right">
         <p className="text-black/40 mb-2 w-full">Currency Type</p>
         <select
